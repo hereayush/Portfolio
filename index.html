@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Kumar Gupta | Portfolio</title>
+    <style>
+        /* A real, hand-coded looking Neo-Brutalist style */
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
+        :root {
+            --bg-color: #f4f4f0;
+            --text-color: #111111;
+            --funky-blue: #4ECDC4;
+            --funky-pink: #FF6B6B;
+            --funky-yellow: #FFE66D;
+            --funky-purple: #9D4EDD;
+            --border-style: 3px solid #111111;
+            --hard-shadow: 6px 6px 0px #111111;
+            --hard-shadow-hover: 10px 10px 0px #111111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* --- SIMPLE ANIMATIONS --- */
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .animate-up {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding-bottom: 20px;
+            border-bottom: var(--border-style);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background-color: var(--funky-yellow);
+            padding: 5px 10px;
+            border: var(--border-style);
+            box-shadow: 4px 4px 0px #111;
+        }
+
+        .links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .links a:hover {
+            color: var(--funky-pink);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            margin-bottom: 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background-color: var(--funky-blue);
+            padding: 0 10px;
+            border: var(--border-style);
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            padding: 12px 24px;
+            border: var(--border-style);
+            box-shadow: var(--hard-shadow);
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+
+        .btn-primary { background-color: var(--funky-pink); }
+        .btn-secondary { background-color: var(--funky-blue); }
+
+        .btn:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--hard-shadow-hover);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            background-color: var(--funky-yellow);
+            padding: 5px 15px;
+            border: var(--border-style);
+            box-shadow: 4px 4px 0px #111;
+        }
+        /* --- RACING TRACK TIMELINE --- */
+        .track-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px 0;
+        }
+
+        .road-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 16px;
+            background-color: #111;
+            transform: translateX(-50%);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
+
+        /* Dashed white line down the middle of the road */
+        .road-line::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 4px;
+            background: repeating-linear-gradient(to bottom, #fff, #fff 15px, transparent 15px, transparent 30px);
+            transform: translateX(-50%);
+        }
+
+        .milestone {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+        }
+
+        .milestone:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .milestone-card {
+            width: 42%;
+            background-color: #fff;
+            border: var(--border-style);
+            padding: 15px;
+            box-shadow: var(--hard-shadow);
+            transition: transform 0.2s;
+        }
+
+        .milestone-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--hard-shadow-hover);
+        }
+
+        .milestone-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .tag-score {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border: 2px solid #111;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .track-dot {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #111;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .car-marker, .finish-flag {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            font-size: 2.5rem;
+            z-index: 5;
+            background-color: var(--bg-color); /* Hides the road behind the emoji */
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        /* Mobile Fixes so it doesn't break on small screens */
+        @media (max-width: 768px) {
+            .road-line { left: 30px; }
+            .milestone { flex-direction: column !important; align-items: flex-start; padding-left: 80px; }
+            .milestone-card { width: 100%; margin-bottom: 10px; }
+            .track-dot { left: 30px; }
+            .car-marker, .finish-flag { left: 30px; transform: translate(-50%, 0); }
+        }
+
+        /* --- CARDS (For Projects & Achievements) --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: var(--border-style);
+            padding: 25px;
+            box-shadow: var(--hard-shadow);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--hard-shadow-hover);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- SKILLS TAGS --- */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background-color: #fff;
+            border: var(--border-style);
+            padding: 10px 20px;
+            font-weight: 600;
+            box-shadow: 4px 4px 0px #111;
+            transition: transform 0.2s;
+        }
+
+        .skill:hover {
+            transform: translateY(-3px);
+            background-color: var(--funky-purple);
+            color: #fff;
+        }
+
+        /* --- CERTIFICATES PLACEHOLDER --- */
+        .cert-box {
+            background-color: #fff;
+            border: 3px dashed #111;
+            padding: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            border-top: var(--border-style);
+            padding-top: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="animate-up" style="animation-delay: 0s;">
+        <div class="logo">Ayush.</div>
+        <div class="links">
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#responsibility">POR</a>
+            <a href="#achievements">Achievements</a>
+        </div>
+    </nav>
+
+    <header class="hero animate-up" style="animation-delay: 0.1s;">
+        <h1>Hi, I'm Ayush.<br><span>SDE & Builder</span></h1>
+        
+        <p>
+            I am a B.Tech student in Electronics & Electrical Engineering at IIT Guwahati, but my real focus is software. 
+            I love to code and I'm eager to get an SDE job. I've completed my DSA in Java and did a course on full-stack web development. I pick things up fast—if I see the basic boilerplate and syntax once, I can easily write code in C, C++, or Python too.
+        </p>
+
+        <div class="btn-group">
+            <a href="mailto:ayushkumargupta578@gmail.com" class="btn btn-primary">Email Me</a>
+            <a href="https://github.com/hereayush" target="_blank" class="btn btn-secondary">GitHub</a>
+            <a href="https://www.linkedin.com/in/here-ayush/" target="_blank" class="btn">LinkedIn</a>
+        </div>
+    </header>
+
+    <section id="journey" class="animate-up" style="animation-delay: 0.35s;">
+        <h2 class="section-title">The Track Record</h2>
+        
+        <div class="track-wrapper">
+            <div class="road-line"></div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>NST Cleared</h4>
+                    <span class="tag-score" style="background-color: var(--funky-pink);">Navodaya Selection Test</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-pink);"></div>
+                <div style="width: 42%;"></div> </div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>10th CBSE Boards</h4>
+                    <span class="tag-score" style="background-color: var(--funky-blue);">Score: 96.8%</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-blue);"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>DST Cleared</h4>
+                    <span class="tag-score" style="background-color: var(--funky-yellow);">Dakshana Selection Test</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-yellow);"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>JEE Main</h4>
+                    <span class="tag-score" style="background-color: var(--funky-purple); color: #fff;">AIR: 13,355</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-purple);"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>12th CBSE Boards</h4>
+                    <span class="tag-score" style="background-color: var(--funky-pink);">Score: 94.0%</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-pink);"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card">
+                    <h4>JEE Advanced</h4>
+                    <span class="tag-score" style="background-color: var(--funky-blue);">AIR: 5,310</span>
+                </div>
+                <div class="track-dot" style="background-color: var(--funky-blue);"></div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card" style="border-color: var(--funky-blue); border-width: 4px;">
+                    <h4>B.Tech, EEE</h4>
+                    <span class="tag-score" style="background-color: var(--funky-yellow);">📍 IIT Guwahati (Current)</span>
+                </div>
+                <div class="car-marker">🏎️💨</div>
+                <div style="width: 42%;"></div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-card" style="background-color: var(--funky-purple); color: #fff;">
+                    <h4 style="color: #fff;">SDE Job / Internship</h4>
+                    <span class="tag-score" style="background-color: #fff; color: #111;">Next Target</span>
+                </div>
+                <div class="finish-flag">🏁</div>
+                <div style="width: 42%;"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="animate-up" style="animation-delay: 0.2s;">
+        <h2 class="section-title">My Stack</h2>
+        <div class="skills-wrapper">
+            <div class="skill">Java (DSA)</div>
+            <div class="skill">C / C++</div>
+            <div class="skill">Python</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">MERN Stack</div>
+            <div class="skill">HTML5 & CSS3</div>
+            <div class="skill">Git & GitHub</div>
+            <div class="skill">Numpy</div>
+            <div class="skill">Pandas</div>
+            <div class="skill">Matplotlib</div>
+            <div class="skill">Scikit Learn</div>
+            <div class="skill">MongoDB</div>
+            
+        </div>
+    </section>
+
+    <section id="projects" class="animate-up" style="animation-delay: 0.3s;">
+        <h2 class="section-title">What I've Built</h2>
+        <div class="card-grid">
+            
+            <div class="card">
+                <h3>FoodBuddy</h3>
+                <p>An AI-powered dietary assistant that analyzes food ingredients and detects health risks. Uses Tesseract.js for OCR scanning and integrates the Gemini API to provide real-time health insights.</p>
+                <p><strong>Tech:</strong> React.js, Firebase, Gemini API, Tesseract.js</p>
+                <div style="margin-top: 20px; display: flex; gap: 15px;">
+                    <a href="https://foodbuddy-lake.vercel.app/" target="_blank" style="font-weight: 700; color: var(--funky-pink); text-decoration: underline;">Live Website ↗</a>
+                    <a href="https://github.com/hereayush/Foodbuddy" target="_blank" style="font-weight: 700; color: var(--text-color); text-decoration: underline;">GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>WanderLust</h3>
+                <p>A full-stack travel platform for listing and reviewing destinations. Features secure user authentication, robust RESTful APIs, and a dynamic interface built with custom CSS and templating.</p>
+                <p><strong>Tech:</strong> Node.js, Express.js, MongoDB, Passport.js, EJS</p>
+                <div style="margin-top: 20px; display: flex; gap: 15px;">
+                    <a href="https://wanderlust-2djo.onrender.com/listings" target="_blank" style="font-weight: 700; color: var(--funky-blue); text-decoration: underline;">Live Website ↗</a>
+                    <a href="https://github.com/hereayush/WanderLust" target="_blank" style="font-weight: 700; color: var(--text-color); text-decoration: underline;">GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Simon Game</h3>
+                <p>An interactive, browser-based memory game inspired by the classic toy. Features custom level progression logic, strict player input validation, and real-time audio-visual feedback.</p>
+                <p><strong>Tech:</strong> Vanilla JavaScript, HTML5, CSS3</p>
+                <div style="margin-top: 20px; display: flex; gap: 15px;">
+                    <a href="https://hereayush.github.io/simon_game/" target="_blank" style="font-weight: 700; color: var(--funky-purple); text-decoration: underline;">Live Website ↗</a>
+                    <a href="https://github.com/hereayush/simon_game" target="_blank" style="font-weight: 700; color: var(--text-color); text-decoration: underline;">GitHub ↗</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<section id="responsibility" class="animate-up" style="animation-delay: 0.35s;">
+        <h2 class="section-title">Positions of Responsibility</h2>
+        <div class="card-grid">
+            
+        <div class="card">
+                <h3>Branch Representative</h3>
+                <p style="font-weight: 600;">Student's Academic Board, IIT Guwahati</p>
+                <p style="font-size: 0.95rem; margin-top: 10px; color: #444;">
+                    Mentored <strong>400+</strong> students across the department, actively resolving their academic and day-to-day administrative queries.
+                </p>
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background-color: var(--funky-yellow); padding: 4px 10px; border: 2px solid #111; font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0px #111;">
+                        2025 - Ongoing
+                    </span>
+                    <a href="./cert/Branch_Representative_EEE.pdf" target="_blank" style="font-weight: 700; color: var(--funky-pink); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+           <div class="card">
+                <h3>Department Training Rep.</h3>
+                <p style="font-weight: 600;">Centre for Career Development, IIT Guwahati</p>
+                <p style="font-size: 0.95rem; margin-top: 10px; color: #444;">
+                    Acted as the primary liaison between the CCD and the department, ensuring seamless communication and managing placement queries for <strong>180+</strong> students.
+                </p>
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background-color: var(--funky-purple); padding: 4px 10px; border: 2px solid #111; font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0px #111; color: #fff;">
+                        2025 - Ongoing
+                    </span>
+                    <a href="./cert/DTR_CCD.jpg" target="_blank" style="font-weight: 700; color: var(--funky-blue); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>College Representative</h3>
+                <p style="font-weight: 600;">Dakshana Alumni Network</p>
+                <p style="font-size: 0.95rem; margin-top: 10px; color: #444;">
+                    Counseled <strong>100+</strong> scholars on academic and financial matters, and successfully organized large-scale community events including the Fresher's Party and Dakshana Foundation Day.
+                </p>
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background-color: var(--funky-blue); padding: 4px 10px; border: 2px solid #111; font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0px #111;">
+                        2025 - Ongoing
+                    </span>
+                    <a href="./cert/College_representative_DaanCouncil.jpg" target="_blank" style="font-weight: 700; color: var(--funky-pink); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Social Media Committee</h3>
+                <p style="font-weight: 600;">Bharti Airtel Foundation</p>
+                <p style="font-size: 0.95rem; margin-top: 10px; color: #444;">
+                    Guided <strong>100+</strong> students through scholarship eligibility and documentation processes, while actively driving outreach campaigns to build awareness for the foundation.
+                </p>
+                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="background-color: var(--funky-pink); padding: 4px 10px; border: 2px solid #111; font-weight: 700; font-size: 0.85rem; box-shadow: 2px 2px 0px #111;">
+                        2024 - Ongoing
+                    </span>
+                    <a href="./cert/Social_Media_committee-proof.jpg" target="_blank" style="font-weight: 700; color: var(--funky-blue); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </section>
+
+    <section id="achievements" class="animate-up" style="animation-delay: 0.4s;">
+        <h2 class="section-title">Achievements & Certs</h2>
+        
+        <div class="card-grid">
+            
+            <div class="card">
+                <h3>Dakshana Scholar</h3>
+                <p>Cleared the highly competitive Dakshana Scholarship Test, officially securing a position in the <strong>top 1% nationwide</strong>.</p>
+                <div style="margin-top: 20px; text-align: right;">
+                    <a href="./cert/dakshana congratulations letter.pdf" target="_blank" style="font-weight: 700; color: var(--funky-pink); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>AlgoUniversity Fellow</h3>
+                <p>Qualified Stage 1 of the Tech Fellowship with a ranking in the <strong>top 8% nationwide</strong> out of over 250,000 participating students.</p>
+                <div style="margin-top: 20px; text-align: right;">
+                    <a href="./cert/AlgoUniversity.png" target="_blank" style="font-weight: 700; color: var(--funky-blue); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Buddy4Vidya Panelist</h3>
+                <p>Invited to serve as a co-panelist alongside Padma Bhushan awardee Dr. Vinod Dham, widely recognized in the industry as the "Father of the Pentium Chip."</p>
+                <div style="margin-top: 20px; text-align: right;">
+                    <a href="./cert/Buddy4Vidya Certificate_Ayush.jpg" target="_blank" style="font-weight: 700; color: var(--funky-purple); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>NST Scholar (2020)</h3>
+                <p>Successfully cleared the Navodaya Selection Test (NST), earning prestigious admission to Jawahar Navodaya Vidyalaya under the Ministry of Education, India.</p>
+                <div style="margin-top: 20px; text-align: right;">
+                    <a href="./cert/NST_proof.jpeg" target="_blank" style="font-weight: 700; color: var(--text-color); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>JNV Alumni Organizer</h3>
+                <p>Organized the Navodaya Foundation Day event, handling everything from the ground-up logistics and funding to securing official permissions.</p>
+                <div style="margin-top: 20px; text-align: right;">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Dakshana Center Head</h3>
+                <p>Served as the official Center Head at JNV Bijapur, successfully managing the execution of the Dakshana Selection Test—a highly competitive pan-India examination taken by over <strong>15,000+</strong> students annually.</p>
+                <div style="margin-top: 20px; text-align: right;">
+                    <a href="./cert/Dst_certificate_dec25.pdf" target="_blank" style="font-weight: 700; color: var(--funky-blue); text-decoration: underline;">View Certificate ↗</a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <footer>
+        <p>Hand-coded by Ayush Kumar Gupta. &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
